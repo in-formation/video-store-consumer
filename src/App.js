@@ -6,21 +6,12 @@ import {
   Link
 } from "react-router-dom";
 import './App.css';
+import Search from './components/Search';
+import Customers from './components/Customers';
+import Library from './components/Library';
 
 function Home() {
   return <h2>Home</h2>;
-}
-
-function Search() {
-  return <h2>Search</h2>;
-}
-
-function Library() {
-  return <h2>Library</h2>;
-}
-
-function Customers() {
-  return <h2>Customers</h2>;
 }
 
 class App extends Component {
