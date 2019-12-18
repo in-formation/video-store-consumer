@@ -9,6 +9,7 @@ import './App.css';
 import Search from './components/Search';
 import Customers from './components/Customers';
 import Library from './components/Library';
+import axios from 'axios';
 
 function Home() {
   return <h2>Home</h2>;
@@ -36,15 +37,31 @@ class App extends Component {
     })
   }
 
+  addRental = () => {
+    axios.post(`http://localhost:4000/rentals/${this.state.selectedMovie.title}/check-out`, {
+      customer_id: this.state.selectedCustomer.id
+    })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+      this.setState({
+        error: error.message,
+      })
+    })
+  }
+
   render() {
     return (
       <Router>
         <div>
           <div>
-          <ul className="info-bar">
-            <li>{this.state.selectedMovie ? this.state.selectedMovie.title : null}</li>
-            <li>{this.state.selectedCustomer ? this.state.selectedCustomer.name : null}</li>
-          </ul>
+            <ul className="info-bar">
+              <li>{this.state.selectedMovie ? this.state.selectedMovie.title : null}</li>
+              <li>{this.state.selectedCustomer ? this.state.selectedCustomer.name : null}</li>
+            </ul>
+            <button onClick={this.addRental}>Checkout</button>
           </div>
           <nav>
             <ul>

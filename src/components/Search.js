@@ -46,8 +46,7 @@ class Search extends Component {
 
   addMovie = () => {
     axios.post('http://localhost:4000/movies', this.state.searchedMovie)
-    .then((response) => {
-      console.log(response)
+    .then(() => {
     })
     .catch((error) => {
       console.log(error)
