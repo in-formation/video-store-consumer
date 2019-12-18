@@ -23,7 +23,7 @@ class SearchBar extends Component {
     this.setState({
       searchTerm: '',
     })
-
+    console.log("the query is", query)
     this.props.submitSearchTermCallback(query);
     this.resetState();
   }
