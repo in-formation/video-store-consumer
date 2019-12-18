@@ -1,0 +1,13 @@
+.selected-border {
+  border: 10px solid yellow;
+}
+
+.movie-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.movie {
+  padding: 5px;
+}
