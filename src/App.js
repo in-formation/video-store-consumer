@@ -40,6 +40,12 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <div>
+          <ul className="info-bar">
+            <li>{this.state.selectedMovie ? this.state.selectedMovie.title : null}</li>
+            <li>{this.state.selectedCustomer ? this.state.selectedCustomer.name : null}</li>
+          </ul>
+          </div>
           <nav>
             <ul>
               <li>
