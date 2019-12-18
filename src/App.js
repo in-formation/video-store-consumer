@@ -15,6 +15,27 @@ function Home() {
 }
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedMovie: {},
+      selectedCustomer: {},
+    }
+  }
+
+  setMovieState = (movie) => {
+    this.setState({
+      selectedMovie: movie
+    })
+  };
+
+  setCustomerState = (customer) => {
+    this.setState({
+      selectedCustomer: customer
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -41,10 +62,14 @@ class App extends Component {
               <Search />
             </Route>
             <Route path="/library">
-              <Library />
+              <Library 
+                onSelectedMovieCallback={this.setMovieState}
+              />
             </Route>
             <Route path="/customers">
-              <Customers />
+              <Customers
+                onSelectedCustomerCallback={this.setCustomerState}
+              />
             </Route>
             <Route path="/">
               <Home />

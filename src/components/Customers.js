@@ -30,6 +30,7 @@ class Customers extends Component {
     this.setState({
       selectedCustomer: customer,
     });
+    this.props.onSelectedCustomerCallback(customer);
   }
 
 

@@ -32,6 +32,7 @@ class Library extends Component {
     this.setState({
       selectedMovie: movie,
     });
+    this.props.onSelectedMovieCallback(movie);
   }
 
   listMovies = () => {
