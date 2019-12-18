@@ -25,6 +25,14 @@ class Customers extends Component {
       });
     })
   }
+  
+  selectCustomer = (customer) => {
+    this.setState({
+      selectedCustomer: customer,
+    });
+  }
+
+
 
   showAllCustomers = () => {
     return(
@@ -33,7 +41,10 @@ class Customers extends Component {
           <tr key={i}>
             <td>{customer.id}</td>
             <td>{customer.name}</td>
-            <td>Button</td>
+            <td><button
+              type="button"
+              onClick={() => { this.selectCustomer(customer) }}
+            >Select</button></td>
           </tr>
         )
       })
