@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import axios from 'axios';
 import SearchBar from './SearchBar';
 
@@ -29,10 +29,12 @@ class Search extends Component {
         }
       })
       .then((response) => {
-        console.log(response.data[0])
-        this.setState({
-          searchedMovie: response.data[0]
-        });
+        // console.log(response.data[0])
+        if (response.data[0] !== undefined) {
+          this.setState({
+            searchedMovie: response.data[0]
+          });
+        };
       })
       .catch((error) => {
         this.setState({
