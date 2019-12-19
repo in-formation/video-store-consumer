@@ -9,15 +9,21 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      searchedMovie: {},
+      selectedMovie: {},
+      searchedMovies: [],
       error: '',
-      isInRentalLibrary: false,
     }
   }
 
   resetState = () => {
     this.setState({
-      searchedMovie: {},
+      searchedMovies: [],
+    });
+  }
+
+  selectMovie = (movie) => {
+    this.setState({
+      selectedMovie: movie,
     });
   }
 
@@ -29,54 +35,46 @@ class Search extends Component {
         }
       })
       .then((response) => {
-        // console.log(response.data[0])
-        if (response.data[0] !== undefined) {
+        if (response.data !== undefined) {
+          console.log(response)
           this.setState({
-            searchedMovie: response.data[0]
+            searchedMovies: response.data
           });
         };
       })
       .catch((error) => {
         this.setState({
           error: error.errors,
-          searchedMovie: {},
+          searchedMovies: [],
         });
       })
     }
-    // this.localSearch()
   }
 
-  addMovie = () => {
-    axios.post('http://localhost:4000/movies', this.state.searchedMovie)
+  addMovie = (movie) => {
+    axios.post('http://localhost:4000/movies', movie)
     .then(() => {
     })
     .catch((error) => {
-      console.log(error)
       this.setState({
         error: error.message,
-        searchedMovie: {},
+        searchedMovies: [],
       })
     })
-    // this.resetState()
   }
 
-  // localSearch = () => {
-  //   axios.get(`http://localhost:4000/movies/${this.state.searchedMovie.title}`)
-  //   .then((response) => {
-  //     if (this.state.searchedMovie && response.data.title === this.state.searchedMovie.title) {
-  //       this.setState({
-  //         isInRentalLibrary: true,
-  //       })
-  //     }
-  //     console.log(this.state.isInRentalLibrary)
-  //   })
-  //   .catch((error) => {
-  //     this.setState({
-  //       isInRentalLibrary: false,
-  //       error: error.errors,
-  //     })
-  //   })
-  // }
+  listMovies = () => {
+    return(
+      this.state.searchedMovies.map((movie, i) => {
+        return (
+          <div className="movie" key={i}>
+            <img src={movie.image_url} alt={movie.title} onClick={() =>  { this.selectMovie(movie) }} className={(movie === this.state.selectedMovie ? "selected-border" : null)}></img>
+            <button onClick={() => this.addMovie(movie)}>Add Movie to Inventory</button>
+          </div>
+        )
+      })
+    )
+  }
 
   render() {
     return (
@@ -85,11 +83,7 @@ class Search extends Component {
           submitSearchTermCallback={this.searchMovie}
         />
         {this.state.error}
-        {Object.values(this.state.searchedMovie).length !== 0 ? <img src={this.state.searchedMovie.image_url} alt={this.state.searchedMovie.title}></img> : null}
-        {/* {this.state.isInRentalLibrary && this.state.searchedMovie.title !== undefined ? 'Movie is in Rental Library' : 'Movie is Not in Rental Library'} */}
-        {console.log(this.state.searchedMovie)}
-        {Object.values(this.state.searchedMovie).length !== 0 ? <button onClick={this.addMovie}>Add Movie to Inventory</button> : null}
-        
+        <section className="movie-list">{this.listMovies()}</section>
       </section>
     );
   }

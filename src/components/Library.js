@@ -16,10 +16,10 @@ class Library extends Component {
   componentDidMount = () => {
     axios.get('http://localhost:4000/movies')
     .then((response) => {
-      console.log(response.data)
       this.setState({
         allMovies: response.data
       });
+      this.props.allMoviesCallback(this.state.allMovies)
     })
     .catch((error) => {
       this.setState({

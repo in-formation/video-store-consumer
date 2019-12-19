@@ -22,6 +22,7 @@ class App extends Component {
     this.state = {
       selectedMovie: {},
       selectedCustomer: {},
+      allMovies: [],
     }
   }
 
@@ -59,6 +60,12 @@ class App extends Component {
     })
   }
 
+  allMovies = (movies) => {
+    this.setState({
+      allMovies: movies,
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -68,7 +75,6 @@ class App extends Component {
               <li>{Object.values(this.state.selectedMovie).length !== 0 ? 'Selected Movie:' : null} {this.state.selectedMovie ? this.state.selectedMovie.title : null}</li>
               <li>{Object.values(this.state.selectedCustomer).length !== 0 ? 'Selected Customer:' : null} {this.state.selectedCustomer ? this.state.selectedCustomer.name : null}</li>
               <li>
-                {console.log(this.state.selectedCustomer)}
                 {Object.values(this.state.selectedMovie).length !== 0 && Object.values(this.state.selectedCustomer).length !== 0 ? <button onClick={this.addRental}>Checkout</button> : null}
               </li>
             </ul>
@@ -90,16 +96,20 @@ class App extends Component {
             </ul>
           </nav>
           <h1>
-            Blockbuster LLC
+            Blockbuster 2 LLC
           </h1>
 
           <Switch>
             <Route path="/search">
-              <Search />
+              <Search 
+              allMovies={this.state.allMovies}
+              />
+              
             </Route>
             <Route path="/library">
               <Library 
                 onSelectedMovieCallback={this.setMovieState}
+                allMoviesCallback={this.allMovies}
               />
             </Route>
             <Route path="/customers">

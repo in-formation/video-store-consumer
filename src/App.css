@@ -52,3 +52,20 @@ nav ul li a {
 h1 {
   color: gold;
 }
+
+
+.selected-border {
+  border: 10px solid gold;
+}
+
+.movie-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.movie {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
