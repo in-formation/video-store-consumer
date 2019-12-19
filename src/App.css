@@ -44,3 +44,11 @@ nav ul li a {
   text-decoration: none;
   color: rgb(61, 66, 71);
 }
+
+* {
+  text-align: center;
+}
+
+h1 {
+  color: gold;
+}

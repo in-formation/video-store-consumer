@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './Customers.css';
 
 class Customers extends Component {
   constructor(props) {
@@ -57,7 +58,7 @@ class Customers extends Component {
     return(
       <section>
         <h2>List of Customers</h2>
-        <table border="1" cellSpacing="5">
+        <table border="1" cellSpacing="5" className="customers">
           <thead>
             <tr>
               <th>ID</th>

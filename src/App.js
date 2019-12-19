@@ -12,7 +12,7 @@ import Library from './components/Library';
 import axios from 'axios';
 
 function Home() {
-  return <h2>Home</h2>;
+  return <img src="http://storage.googleapis.com/wzukusers/user-20421638/images/57acd46107e18N5ndobw/82ET.jpg" alt="et phone home"></img>;
 }
 
 class App extends Component {
@@ -89,6 +89,9 @@ class App extends Component {
               </li>
             </ul>
           </nav>
+          <h1>
+            Blockbuster LLC
+          </h1>
 
           <Switch>
             <Route path="/search">
