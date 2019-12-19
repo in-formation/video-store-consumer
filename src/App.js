@@ -25,6 +25,13 @@ class App extends Component {
     }
   }
 
+  resetState = () => {
+    this.setState({
+      selectedMovie: {},
+      selectedCustomer: {},
+    });
+  }
+
   setMovieState = (movie) => {
     this.setState({
       selectedMovie: movie
@@ -41,8 +48,8 @@ class App extends Component {
     axios.post(`http://localhost:4000/rentals/${this.state.selectedMovie.title}/check-out`, {
       customer_id: this.state.selectedCustomer.id
     })
-    .then((response) => {
-      console.log(response)
+    .then(() => {
+      this.resetState()
     })
     .catch((error) => {
       console.log(error)
@@ -58,10 +65,13 @@ class App extends Component {
         <div>
           <div>
             <ul className="info-bar">
-              <li>{this.state.selectedMovie ? this.state.selectedMovie.title : null}</li>
-              <li>{this.state.selectedCustomer ? this.state.selectedCustomer.name : null}</li>
+              <li>{Object.values(this.state.selectedMovie).length !== 0 ? 'Selected Movie:' : null} {this.state.selectedMovie ? this.state.selectedMovie.title : null}</li>
+              <li>{Object.values(this.state.selectedCustomer).length !== 0 ? 'Selected Customer:' : null} {this.state.selectedCustomer ? this.state.selectedCustomer.name : null}</li>
+              <li>
+                {console.log(this.state.selectedCustomer)}
+                {Object.values(this.state.selectedMovie).length !== 0 && Object.values(this.state.selectedCustomer).length !== 0 ? <button onClick={this.addRental}>Checkout</button> : null}
+              </li>
             </ul>
-            <button onClick={this.addRental}>Checkout</button>
           </div>
           <nav>
             <ul>
