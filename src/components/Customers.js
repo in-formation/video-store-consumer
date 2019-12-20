@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 class Customers extends Component {
   constructor(props) {
@@ -46,6 +52,7 @@ class Customers extends Component {
               type="button"
               onClick={() => { this.selectCustomer(customer) }}
             >Select</button></td>
+            <td><Link to="/customer/details"><button type="button">Details</button></Link></td>
           </tr>
         )
       })
@@ -55,21 +62,31 @@ class Customers extends Component {
 
   render(){
     return(
-      <section>
-        <h2>List of Customers</h2>
-        <table border="1" cellSpacing="5">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.showAllCustomers()}
-          </tbody>
-        </table>
-      </section>
+      <Router>
+        <section>
+          <h2>List of Customers</h2>
+          <table border="1" cellSpacing="5">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.showAllCustomers()}
+            </tbody>
+          </table>
+
+          <Switch>
+            <Route path="/customers/details">
+              {/* <CustomerDetails /> */}
+            </Route>
+          </Switch>
+        </section>
+      </Router>
+      
     );
   }
 }

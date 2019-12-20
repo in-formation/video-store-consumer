@@ -52,6 +52,7 @@ class App extends Component {
     })
   }
 
+
   render() {
     return (
       <Router>
@@ -59,7 +60,7 @@ class App extends Component {
           <div>
             <ul className="info-bar">
               <li>{this.state.selectedMovie ? this.state.selectedMovie.title : null}</li>
-              <li>{this.state.selectedCustomer ? this.state.selectedCustomer.name : null}</li>
+              {/* <li>{this.state.selectedCustomer ? this.state.selectedCustomer.name : null}</li> */}
             </ul>
             <button onClick={this.addRental}>Checkout</button>
           </div>
