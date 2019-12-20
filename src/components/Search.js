@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar';
 
-
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -68,8 +67,10 @@ class Search extends Component {
       this.state.searchedMovies.map((movie, i) => {
         return (
           <div className="movie" key={i}>
+            <h4>{movie.title}</h4>
             <img src={movie.image_url} alt={movie.title} onClick={() =>  { this.selectMovie(movie) }} className={(movie === this.state.selectedMovie ? "selected-border" : null)}></img>
-            <button onClick={() => this.addMovie(movie)}>Add Movie to Inventory</button>
+            <p>{movie.overview}</p>
+            <button className="add-movie" onClick={() => this.addMovie(movie)}>Add Movie to Inventory</button>
           </div>
         )
       })

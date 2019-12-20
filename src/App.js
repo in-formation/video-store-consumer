@@ -22,7 +22,6 @@ class App extends Component {
     this.state = {
       selectedMovie: {},
       selectedCustomer: {},
-      allMovies: [],
     }
   }
 
@@ -60,25 +59,10 @@ class App extends Component {
     })
   }
 
-  allMovies = (movies) => {
-    this.setState({
-      allMovies: movies,
-    })
-  }
-
   render() {
     return (
       <Router>
-        <div>
-          <div>
-            <ul className="info-bar">
-              <li>{Object.values(this.state.selectedMovie).length !== 0 ? 'Selected Movie:' : null} {this.state.selectedMovie ? this.state.selectedMovie.title : null}</li>
-              <li>{Object.values(this.state.selectedCustomer).length !== 0 ? 'Selected Customer:' : null} {this.state.selectedCustomer ? this.state.selectedCustomer.name : null}</li>
-              <li>
-                {Object.values(this.state.selectedMovie).length !== 0 && Object.values(this.state.selectedCustomer).length !== 0 ? <button onClick={this.addRental}>Checkout</button> : null}
-              </li>
-            </ul>
-          </div>
+        <div className="container">
           <nav>
             <ul>
               <li>
@@ -95,32 +79,38 @@ class App extends Component {
               </li>
             </ul>
           </nav>
-          <h1>
-            Blockbuster 2 LLC
-          </h1>
-
-          <Switch>
-            <Route path="/search">
-              <Search 
-              allMovies={this.state.allMovies}
-              />
-              
-            </Route>
-            <Route path="/library">
-              <Library 
-                onSelectedMovieCallback={this.setMovieState}
-                allMoviesCallback={this.allMovies}
-              />
-            </Route>
-            <Route path="/customers">
-              <Customers
-                onSelectedCustomerCallback={this.setCustomerState}
-              />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
+          <main>
+            <h1>
+              Blockbuster 2 LLC
+            </h1>
+            <Switch>
+              <Route path="/search">
+                <Search />
+              </Route>
+              <Route path="/library">
+                <Library 
+                  onSelectedMovieCallback={this.setMovieState}
+                />
+              </Route>
+              <Route path="/customers">
+                <Customers
+                  onSelectedCustomerCallback={this.setCustomerState}
+                />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </main>
+          <div className="info-bar-container">
+            <ul className="info-bar">
+              <li>{Object.values(this.state.selectedMovie).length !== 0 ? 'Selected Movie:' : null} {this.state.selectedMovie ? this.state.selectedMovie.title : null}</li>
+              <li>{Object.values(this.state.selectedCustomer).length !== 0 ? 'Selected Customer:' : null} {this.state.selectedCustomer ? this.state.selectedCustomer.name : null}</li>
+              <li>
+                {Object.values(this.state.selectedMovie).length !== 0 && Object.values(this.state.selectedCustomer).length !== 0 ? <button onClick={this.addRental}>Checkout</button> : null}
+              </li>
+            </ul>
+          </div>
         </div>
       </Router>
     );

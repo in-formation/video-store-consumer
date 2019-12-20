@@ -40,7 +40,9 @@ class Library extends Component {
       this.state.allMovies.map((movie, i) => {
         return (
           <div className="movie" key={i}>
+            <h4>{movie.title}</h4>
             <img src={movie.image_url} alt={movie.title} onClick={() =>  { this.selectMovie(movie) }} className={(movie === this.state.selectedMovie ? "selected-border" : null)}></img>
+            <p>{movie.overview}</p>
           </div>
         )
       })
