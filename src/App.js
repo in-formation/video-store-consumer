@@ -81,7 +81,7 @@ class App extends Component {
           </nav>
           <main>
             <h1>
-              Blockbuster 2 LLC
+              Hollywood Video 2 LLC
             </h1>
             <Switch>
               <Route path="/search">
