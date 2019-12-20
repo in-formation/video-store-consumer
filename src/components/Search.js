@@ -65,10 +65,11 @@ class Search extends Component {
   listMovies = () => {
     return(
       this.state.searchedMovies.map((movie, i) => {
+        let movieURL = movie.image_url;
         return (
           <div className="movie" key={i}>
             <h4>{movie.title}</h4>
-            <img src={movie.image_url} alt={movie.title} onClick={() =>  { this.selectMovie(movie) }} className={(movie === this.state.selectedMovie ? "selected-border" : null)}></img>
+            <img src={movieURL} alt={movie.title} onClick={() =>  { this.selectMovie(movie) }} className={(movie === this.state.selectedMovie ? "selected-border" : null)}></img>
             <p>{movie.overview}</p>
             <button className="add-movie" onClick={() => this.addMovie(movie)}>Add Movie to Inventory</button>
           </div>
